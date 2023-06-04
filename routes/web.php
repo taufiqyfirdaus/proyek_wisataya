@@ -55,7 +55,13 @@ Route::prefix('administrator')->middleware(['auth', 'role:administrator'])->grou
     Route::get('/content/{content}/status', [ContentController::class,'editStatus'])->name('content.editStatus');
     Route::put('/content/{content}/status', [ContentController::class,'updateStatus'])->name('content.updateStatus');
 
-    Route::resource('user', UserController::class);
+    // Route::resource('user', UserController::class);
+    Route::get('user', [UserController::class,'index'])->name('user.index');
+    Route::get('/administrator/user/create', [UserController::class,'create'])->name('user.create');
+    Route::post('/administrator/user/create', [UserController::class,'store'])->name('user.store');
+    Route::get('/user/{user}/edit', [UserController::class,'edit'])->name('user.edit');
+    Route::put('/user/{user}/edit', [UserController::class,'update'])->name('user.update');
+    Route::delete('/user/{user}/delete', [UserController::class,'destroy'])->name('user.destroy');
 });
 // Route::prefix('administrator')->middleware(['auth', 'role:contributor'])->group(function () {
     // Route::resource('content', ContentController::class);

@@ -1,6 +1,6 @@
 @extends('template.frontend.default')
 @section('content')
-<main role="main">
+<main role="main" class="main">
     <section class="jumbotron text-center mb-5 bg-light">
         <div class="container">
             <h1>{{ config('app.name')}}</h1>

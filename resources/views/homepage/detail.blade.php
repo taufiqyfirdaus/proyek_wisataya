@@ -1,7 +1,7 @@
 @extends('template.frontend.default')
 @section('content')
-    <main role="main">
-        <div class="container">
+    <main role="main" class="main">
+        <div class="container mt-5">
             <div class="row">
                 <div class="col-md-12 mt-5 mb-4">
                     <nav aria-label="breadcrumb">
