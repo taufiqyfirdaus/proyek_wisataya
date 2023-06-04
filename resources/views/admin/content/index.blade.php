@@ -34,16 +34,23 @@
               @endphp
                   <tr>
                     <td>{{ $no }}</td>
-                    <td>{{ $content->city_id }}</td>
-                    <td>{{ $content->user_id }}</td>
+                    <td>{{ $content->city->name }}</td>
+                    <td>{{ $content->user->name }}</td>
                     <td>{{ $content->title }}</td>
                     <td>{!! Str::words($content->content,10) !!}</td>
-                    <td>{{ $content->status_publish }}</td>
                     <td>
-                    <a href="{{ route('content.index', $province)}}" class="btn btn-info btn-sm"><i class="fa fa-show"></i>Buka</a>
-                    <a href="{{ route('content.edit', $province)}}" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i>Edit</a>
-                    <button id="delete" href="{{route('content.destroy', $province)}}" class="btn btn-danger btn-sm" data-title="{{$province->name}}">
-                    <i class="fa fa-trash"></i>Hapus</button>
+                        @if ($content->status_publish == 0)
+                            <span class="badge badge-danger">Belum Publish</span>
+                        @else
+                            <span class="badge badge-success">Sudah Publish</span>
+                        @endif
+                    </td>
+                    <td>
+                    <a href="{{ route('content.show', $content)}}" class="btn btn-info btn-sm"><i class="fa fa-eye"></i></a>
+                    <a href="{{ route('content.editStatus', $content)}}" class="btn btn-success btn-sm"><i class="fa fa-share"></i></a>
+                    <a href="{{ route('content.edit', $content)}}" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>
+                    <button id="delete" href="{{ route('content.destroy', $content)}}" class="btn btn-danger btn-sm" data-title="">
+                    <i class="fa fa-trash"></i></button>
                     </td>
                     <form method="post" id="deleteForm">
                         @csrf
@@ -71,7 +78,7 @@
             var title = $(this).data('title')
 
             swal({
-                title : "Apakah Kamu Yakin Akan Menghapus Data Provinsi "+title+" ?",
+                title : "Apakah Kamu Yakin Akan Menghapus Data Wisata "+title+" ?",
                 text : "Data Yang SUdah di Hapus Tidak Bisa Dikembalikan",
                 icon : "warning",
                 buttons : true,

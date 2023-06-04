@@ -16,20 +16,7 @@ class ProvinceController extends Controller
 
     public function index(Request $request)
     {
-        // $provinces = Province::all();
-        // return view('admin.province.index', compact('provinces'));
-
-        $provinces = Province::where([
-            ['name', '!=', Null],
-            [function ($query) use ($request) {
-                if (($s = $request->s)) {
-                    $query->orWhere('name', 'LIKE', '%' . $s . '%')
-                        ->orWhere('slug', 'LIKE', '%' . $s . '%')
-                        ->get();
-                }
-            }]
-        ])->paginate(10);
-
+        $provinces = Province::all();
         return view('admin.province.index', compact('provinces'));
     }
 

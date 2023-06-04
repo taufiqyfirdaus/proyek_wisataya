@@ -35,7 +35,7 @@
                     <td>{{$province->slug}}</td>
                     <td>
                     <a href="{{ route('city.index', $province)}}" class="btn btn-info btn-sm"><i class="fa fa-list"></i>Kota</a>
-                    <a href="{{ route('province.edit', $province)}}" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i>Edit</a>
+                    <a href="{{ route('province.edit', $province)}}" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i>  Edit</a>
                     <button id="delete" href="{{route('province.destroy', $province)}}" class="btn btn-danger btn-sm" data-title="{{$province->name}}">
                     <i class="fa fa-trash"></i>Hapus</button>
                     </td>

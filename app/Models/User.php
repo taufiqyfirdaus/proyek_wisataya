@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Models\Role;
 use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
@@ -44,4 +45,19 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+    public function getImage()
+    {
+        if($this->image == null){
+            return asset('/images/profile/default.png');
+        }
+        return asset('/images/' . $this->image);
+    }
+
+    public function role(){
+        return $this->belongsTo(Role::class);
+    }
+    public function ownsContent(Content $content)
+    {  
+        return auth()->id() === $content->user->id;   
+    }
 }

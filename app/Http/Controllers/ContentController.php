@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\City;
 use App\Models\Content;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -18,9 +20,9 @@ class ContentController extends Controller
     {
         $contents = Content::all();
 
-        // if(auth()->user()->hasRole('contributor')){
-        //     $contents = Content::where('user_id', auth()->user()->id)->get();
-        // }
+        if(auth()->user()->hasRole('contributor')){
+            $contents = Content::where('user_id', auth()->user()->id)->get();
+        }
 
         return view('admin.content.index', compact('contents'));
     }
@@ -42,9 +44,9 @@ class ContentController extends Controller
         ],
         [
             'city.not_in' => 'Kabupaten/Kota Belum Dipilih',
-            'title.required' => 'Judul Konten Belum Di Isi',
-            'content.required' => 'Konten Belum Di Isi',
-            'thumbnail.required' => 'Thumbnail Belum Di Isi',
+            'title.required' => 'Nama Wisata Belum di Isi',
+            'content.required' => 'Deskripsi Belum di Isi',
+            'thumbnail.required' => 'Thumbnail Belum di Isi',
             'thumbnail.image' => 'Format Thumbnail Tidak Valid',
         ]);
 
@@ -59,7 +61,7 @@ class ContentController extends Controller
             'thumbnail' =>  $image,
         ]);
 
-        Alert::success('Data Content Berhasil Di Tambahkan');
+        Alert::success('Data Wisata Berhasil Di Tambahkan');
         return redirect()->route('content.index');
         
     }
@@ -71,7 +73,7 @@ class ContentController extends Controller
         }
 
         $cities = City::all();
-        return view('admin.content.edit', compact('content', 'cities'));
+        return view('admin.content.edit', compact('cities', 'content'));
     }
 
     public function update(Request $request , Content $content)
@@ -89,7 +91,7 @@ class ContentController extends Controller
         [
             'city.not_in' => 'Kabupaten/Kota Belum Dipilih',
             'title.required' => 'Judul Konten Belum Di Isi',
-            'content.required' => 'Konten Belum Di Isi',
+            'content.required' => 'Deskripsi Belum Di Isi',
            
         ]);
 
