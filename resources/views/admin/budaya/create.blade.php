@@ -1,28 +1,23 @@
 @extends('template.admin.default')
 @section('title')
-    <h1><i class="fa fa-list"></i>Edit Data Wisata</h1>
+    <h1><i class="fa fa-list"></i>Tambah Data Budaya</h1>
 @endsection
 @section('breadcrumbs')
-    {{ Breadcrumbs::render('Edit Data Wisata', $content) }}
+    {{ Breadcrumbs::render('Tambah Data Budaya') }}
 @endsection
 @section('content')
 <div class="col-md-12">
     <div class="tile">
-      <h3 class="tile-title">  Form Edit Data Wisata</h3>
+      <h3 class="tile-title">  Form Tambah Data Budaya</h3>
       <div class="tile-body">
-        <form action="{{ route('content.update', $content)}}" method="post" class="needs-validation" novalidate enctype="multipart/form-data">
+        <form action="{{ route('budaya.store')}}" method="post" class="needs-validation" novalidate enctype="multipart/form-data">
             @csrf
-            @method('PUT')
             <div class="form-group">
                 <label class="control-label">Pilih Kota</label>
                 <select name="city" id="city" class="form-control @error ('city') is-invalid @enderror">
                     <option value="0">-- Pilih Kabupaten/Kota --</option>
                     @foreach ($cities as $city)
-                        <option value="{{$city->id}}"
-                            @if ($content->city_id == $city->id)
-                                selected
-                            @endif
-                            >{{$city->name}}</option> 
+                        <option value="{{$city->id}}">{{$city->name}}</option> 
                     @endforeach
                 </select>
                 @error('city')
@@ -31,8 +26,8 @@
             </div>
 
             <div class="form-group">
-                <label class="control-label">Nama Wisata</label>
-                <input class="form-control @error ('title') is-invalid @enderror" name="title" type="text" placeholder="Masukkan Nama Wisata" value="{{$content->title}}">
+                <label class="control-label">Nama Budaya</label>
+                <input class="form-control @error ('title') is-invalid @enderror" name="title" type="text" placeholder="Masukkan Nama Budaya">
                 @error('title')
                     <p class="text-danger">{{$message}}</p>
                 @enderror
@@ -40,7 +35,7 @@
 
             <div class="form-group">
                 <label class="control-label">Deskripsi</label>
-                <textarea class="form-control @error ('content') is-invalid @enderror" name="content" id="content" placeholder="Masukkan Deskripsi Wisata">{{$content->content}}</textarea>
+                <textarea class="form-control @error ('content') is-invalid @enderror" name="content" id="content" placeholder="Masukkan Deskripsi Budaya"></textarea>
                 @error('content')
                     <p class="text-danger">{{$message}}</p>
                 @enderror
@@ -54,7 +49,7 @@
                 @enderror
             </div>
             <div class="tile-footer">
-                <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Simpan</button>&nbsp;&nbsp;&nbsp;<a class="btn btn-secondary" href="{{ route('content.index')}}"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancel</a>
+                <button class="btn btn-primary" type="submit"><i class="fa fa-fw fa-lg fa-check-circle"></i>Simpan</button>&nbsp;&nbsp;&nbsp;<a class="btn btn-secondary" href="{{ route('budaya.index')}}"><i class="fa fa-fw fa-lg fa-times-circle"></i>Cancel</a>
             </div>
         </form>
       </div>

@@ -12,11 +12,21 @@
           <li class="nav-item">
             <a class="nav-link" href="{{route('getProvince')}}">Pariwisata Indonesia</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('getProvince')}}">Budaya</a>
+          </li>
         </ul>
         <form action="{{ route('result')}}" method="get" class="form-inline my-2 my-lg-0">
             <input type="text" class="form-control mr-sm-2" style="width:70%; float:left;" placeholder="Cari.." name="search">
             <button type="submit" class="btn btn-outline-success my-2 mt-0" style="width:20%; margin-left:10px; float:left;">Cari</button>
         </form>
+        {{-- <form action="{{route('logout')}}" method="post" id="logout-form">
+          @csrf
+          <li class="topnav">
+            <a href="" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" 
+            class="btn btn-danger btn-sm"><i class="fa fa-power-off"></i>  Sign Out</a>
+          </li>
+        </form> --}}
       </div>
     </div>
 </nav>

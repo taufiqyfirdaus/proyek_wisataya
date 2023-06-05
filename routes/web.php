@@ -1,10 +1,12 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\BudayaController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\ContentController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomepageController;
+use App\Http\Controllers\PenginapanController;
 use App\Http\Controllers\ProvinceController;
 use App\Http\Controllers\UserController;
 use App\Models\Province;
@@ -35,6 +37,7 @@ Route::get('/result', [HomepageController::class, 'result'])->name('result');
 Auth::routes();
 // Route::get('logout', [LoginController::class, 'logout']);
 Route::get('/administrator', [DashboardController::class, 'dashboard'])->name('dashboard');
+
 Route::prefix('administrator')->middleware(['auth', 'role:administrator'])->group(function () {
     // Route::resource('province', ProvinceController::class);
 
@@ -55,6 +58,12 @@ Route::prefix('administrator')->middleware(['auth', 'role:administrator'])->grou
     Route::get('/content/{content}/status', [ContentController::class,'editStatus'])->name('content.editStatus');
     Route::put('/content/{content}/status', [ContentController::class,'updateStatus'])->name('content.updateStatus');
 
+    Route::get('/budaya/{budaya}/status', [BudayaController::class,'editStatus'])->name('budaya.editStatus');
+    Route::put('/budaya/{budaya}/status', [BudayaController::class,'updateStatus'])->name('budaya.updateStatus');
+
+    Route::get('/penginapan/{penginapan}/status', [PenginapanController::class,'editStatus'])->name('penginapan.editStatus');
+    Route::put('/penginapan/{penginapan}/status', [PenginapanController::class,'updateStatus'])->name('penginapan.updateStatus');
+
     // Route::resource('user', UserController::class);
     Route::get('user', [UserController::class,'index'])->name('user.index');
     Route::get('/administrator/user/create', [UserController::class,'create'])->name('user.create');
@@ -62,11 +71,13 @@ Route::prefix('administrator')->middleware(['auth', 'role:administrator'])->grou
     Route::get('/user/{user}/edit', [UserController::class,'edit'])->name('user.edit');
     Route::put('/user/{user}/edit', [UserController::class,'update'])->name('user.update');
     Route::delete('/user/{user}/delete', [UserController::class,'destroy'])->name('user.destroy');
+    
 });
 // Route::prefix('administrator')->middleware(['auth', 'role:contributor'])->group(function () {
     // Route::resource('content', ContentController::class);
     // Route::resource('administrator/content', ContentController::class);
     Route::get('/content', [HomepageController::class, 'otherContent'])->name('otherContent');
+    Route::get('/content/other', [HomepageController::class, 'otherBudaya'])->name('otherBudaya');
 
     Route::get('administrator/content', [ContentController::class,'index'])->name('content.index');
     Route::get('/content/create', [ContentController::class,'create'])->name('content.create');
@@ -75,6 +86,22 @@ Route::prefix('administrator')->middleware(['auth', 'role:administrator'])->grou
     Route::get('/administrator/content/{content}/edit', [ContentController::class,'edit'])->name('content.edit');
     Route::put('/administrator/content/{content}/edit', [ContentController::class,'update'])->name('content.update');
     Route::delete('administrator/content/{content}/delete', [ContentController::class,'destroy'])->name('content.destroy');
+
+    Route::get('administrator/budaya', [BudayaController::class,'index'])->name('budaya.index');
+    Route::get('/budaya/create', [BudayaController::class,'create'])->name('budaya.create');
+    Route::post('/budaya/create', [BudayaController::class,'store'])->name('budaya.store');
+    Route::get('/budaya/{budaya}', [BudayaController::class,'show'])->name('budaya.show');
+    Route::put('/administrator/budaya/{budaya}/edit', [BudayaController::class,'update'])->name('budaya.update');
+    Route::delete('administrator/budaya/{budaya}/delete', [BudayaController::class,'destroy'])->name('budaya.destroy');
+    Route::get('/administrator/budaya/{budaya}/edit', [BudayaController::class,'edit'])->name('budaya.edit');
+
+    Route::get('administrator/penginapan', [PenginapanController::class,'index'])->name('penginapan.index');
+    Route::get('/penginapan/create', [PenginapanController::class,'create'])->name('penginapan.create');
+    Route::post('/penginapan/create', [PenginapanController::class,'store'])->name('penginapan.store');
+    Route::get('/penginapan/{penginapan}', [PenginapanController::class,'show'])->name('penginapan.show');
+    Route::put('/administrator/penginapan/{penginapan}/edit', [PenginapanController::class,'update'])->name('penginapan.update');
+    Route::delete('administrator/penginapan/{penginapan}/delete', [PenginapanController::class,'destroy'])->name('penginapan.destroy');
+    Route::get('/administrator/penginapan/{penginapan}/edit', [PenginapanController::class,'edit'])->name('penginapan.edit');
     
     // });
     

@@ -60,4 +60,12 @@ class User extends Authenticatable
     {  
         return auth()->id() === $content->user->id;   
     }
+    public function ownsBudaya( Budaya $budaya)
+    {  
+        return auth()->id() === $budaya->user->id;   
+    }
+    public function ownsPenginapan( Penginapan $penginapan)
+    {  
+        return auth()->id() === $penginapan->user->id;   
+    }
 }

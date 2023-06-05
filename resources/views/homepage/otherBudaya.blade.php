@@ -5,7 +5,7 @@
         <div class="container">
             <h1>{{ config('app.name')}}</h1>
             <p class="lead text-muted">
-                Hasil Pencarian <strong>{{$search}}</strong>.
+                Destinasi Wisata di Indonesia.
             </p>
         </div>
     </section>
@@ -18,40 +18,23 @@
                             class="text-decoration-none">{{config('app.name')}}</a>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">
-                            result
+                            Other Content
                         </li>
                     </ol>
                 </nav>
             </div>
         </div>
-        @if ($contents->isEmpty() && $budayas->isEmpty())
+        @if ($budayas->isEmpty())
             <div class="col-md-12">
                 <div class="jumbotron jumbotron-fluid">
                     <div class="container">
-                        <h1 class="display-4">Hasil Pencarian Tidak Ditemukan</h1>
-                        <p class="lead">Silahkan gunakan kata kunci lain.</p>
+                        <h1 class="display-4">Data Tidak ada</h1>
+                        <p class="lead">Silahkan Kembali ke Halaman Home.</p>
                     </div> 
                 </div>
             </div>
         @endif
         <div class="row">
-            @foreach ($contents as $content)
-                <div class="col-md-4">
-                    <div class="shadow card mb-4">
-                        <div class="d-flex flex-wrap">
-                            <img src="{{$content->getThumbnail()}}" alt="{{$content->title}}" 
-                            class="card-img-top">
-                            <h4 class="text-image position-absolute">{{$content->city->name}}</h4>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">{{$content->title}}</h5>
-                            <p class="card-text">{!! Str::words($content->content, 10) !!}</p>
-                            <a href="{{route('detailContent', [$content->city->province->slug, $content->city->slug,
-                            $content])}}" class="btn btn-primary">Explore</a>
-                        </div>
-                    </div>
-                </div>
-            @endforeach
             @foreach ($budayas as $budaya)
                 <div class="col-md-4">
                     <div class="shadow card mb-4">
@@ -64,13 +47,13 @@
                             <h5 class="card-title">{{$budaya->title}}</h5>
                             <p class="card-text">{!! Str::words($budaya->content, 10) !!}</p>
                             <a href="{{route('detailContent', [$budaya->city->province->slug, $budaya->city->slug,
-                            $content])}}" class="btn btn-primary">Explore</a>
+                            $budaya])}}" class="btn btn-primary">Explore</a>
                         </div>
                     </div>
                 </div>
             @endforeach
         </div>
-        {{$contents->render('pagination::bootstrap-5')}}
+        {{$budayas->render('pagination::bootstrap-5')}}
     </div>
 </main>
 @endsection

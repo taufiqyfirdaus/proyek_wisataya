@@ -10,7 +10,7 @@
                             class="text-decoration-none">{{config('app.name')}}</a>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">
-                            Provinsi
+                            Wisata berdasarkan Provinsi
                         </li>
                     </ol>
                 </nav>

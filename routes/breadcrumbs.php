@@ -88,3 +88,61 @@ Breadcrumbs::for('Edit Data User', function ($trail, $user){
     $trail->push('User', route('user.index'));
     $trail->push('Edit Data', route('user.edit', $user));
 });
+
+Breadcrumbs::for('Budaya', function ($trail){
+    $trail->parent('dashboard');
+    $trail->push('Budaya', route('budaya.index'));
+});
+
+Breadcrumbs::for('Tambah Data Budaya', function ($trail){
+    $trail->parent('dashboard');
+    $trail->push('Budaya', route('budaya.index'));
+    $trail->push('Tambah Data', route('budaya.create'));
+});
+
+Breadcrumbs::for('Edit Data Budaya', function ($trail, $budaya){
+    $trail->parent('dashboard');
+    $trail->push('Budaya', route('budaya.index'));
+    $trail->push('Edit Data', route('budaya.edit', $budaya));
+});
+
+Breadcrumbs::for('Edit Status Budaya', function ($trail, $budaya){
+    $trail->parent('dashboard');
+    $trail->push('Budaya', route('budaya.index'));
+    $trail->push('Edit Status', route('budaya.editStatus', $budaya));
+});
+
+Breadcrumbs::for('Lihat Data Budaya', function ($trail, $budaya){
+    $trail->parent('dashboard');
+    $trail->push('Budaya', route('budaya.index'));
+    $trail->push('Lihat Data', route('budaya.show', $budaya));
+});
+
+Breadcrumbs::for('Penginapan', function ($trail){
+    $trail->parent('dashboard');
+    $trail->push('Penginapan', route('penginapan.index'));
+});
+
+Breadcrumbs::for('Tambah Data Penginapan', function ($trail){
+    $trail->parent('dashboard');
+    $trail->push('Penginapan', route('penginapan.index'));
+    $trail->push('Tambah Data', route('penginapan.create'));
+});
+
+Breadcrumbs::for('Edit Data Penginapan', function ($trail, $penginapan){
+    $trail->parent('dashboard');
+    $trail->push('Penginapan', route('penginapan.index'));
+    $trail->push('Edit Data', route('penginapan.edit', $penginapan));
+});
+
+Breadcrumbs::for('Edit Status Penginapan', function ($trail, $penginapan){
+    $trail->parent('dashboard');
+    $trail->push('Penginapan', route('penginapan.index'));
+    $trail->push('Edit Status', route('penginapan.editStatus', $penginapan));
+});
+
+Breadcrumbs::for('Lihat Data Penginapan', function ($trail, $penginapan){
+    $trail->parent('dashboard');
+    $trail->push('Penginapan', route('penginapan.index'));
+    $trail->push('Lihat Data', route('penginapan.show', $penginapan));
+});
