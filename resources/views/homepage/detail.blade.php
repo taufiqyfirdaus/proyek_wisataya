@@ -14,6 +14,9 @@
                             </li>
                         </ol>
                     </nav>
+                    <div class="float-right mt-3">
+                        <a href="{{ route('showPenginapan')}}" class="btn btn-info pr-4 pl-4" style="float:right; color:white;"> Penginapan</a>
+                    </div>
                     <h1>{{$content->title}}</h1>
                     <h6 class="text-muted">{{ $content->created_at->diffForHumans()}} By {{$content->user->name}}</h6>
                     <span class="text-muted">{{$content->city->province->name}}, {{$content->city->name}}</span>
@@ -47,7 +50,7 @@
                         </ul>
                     </div>
                     <hr>
-                    <div class="card">
+                    <div class="card mb-5">
                         <div class="card-header">
                             Provinsi
                         </div>

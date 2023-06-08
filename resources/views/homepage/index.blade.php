@@ -1,10 +1,10 @@
 @extends('template.frontend.default')
 @section('content')
 <main role="main" class="main">
-    <section class="jumbotron text-center mb-5 bg-light">
-        <div class="container">
-            <h1>{{ config('app.name')}}</h1>
-            <p class="lead text-muted">
+    <section class="jumbotron text-center mb-5 bg-light ">
+        <div class="container" style="margin-top: 80px;">
+            <img src="/wisataya/public/images/Wisataya1.svg" width="300" style="margin-bottom: 3px">
+            <p class="lead" style="color: rgb(255, 255, 255)">
                 Negara Kesatuan Republik Indonesia merupakan salah satu surga wisata
                  dunia. Beragam Destinasi Wisata dan Budaya ada di Negara ini.
             </p>
@@ -55,8 +55,8 @@
                         <div class="card-body">
                             <h5 class="card-title">{{$budaya->title}}</h5>
                             <p class="card-text">{!! Str::words($budaya->content, 10) !!}</p>
-                            <a href="{{route('detailContent', [$budaya->city->province->slug, $budaya->city->slug,
-                            $content])}}" class="btn btn-primary">Explore</a>
+                            <a href="{{route('detailBudaya', [$budaya->city->province->slug, $budaya->city->slug,
+                            $budaya])}}" class="btn btn-primary">Explore</a>
                         </div>
                     </div>
                 </div>

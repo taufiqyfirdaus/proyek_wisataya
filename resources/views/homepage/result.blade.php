@@ -2,9 +2,9 @@
 @section('content')
 <main role="main" class="main">
     <section class="jumbotron text-center mb-4 bg-light">
-        <div class="container">
-            <h1>{{ config('app.name')}}</h1>
-            <p class="lead text-muted">
+        <div class="container" style="margin-top: 80px;">
+            <img src="/wisataya/public/images/Wisataya1.svg" width="300" style="margin-bottom: 3px">
+            <p class="lead" style="color: rgb(255, 255, 255)">
                 Hasil Pencarian <strong>{{$search}}</strong>.
             </p>
         </div>
@@ -64,7 +64,7 @@
                             <h5 class="card-title">{{$budaya->title}}</h5>
                             <p class="card-text">{!! Str::words($budaya->content, 10) !!}</p>
                             <a href="{{route('detailContent', [$budaya->city->province->slug, $budaya->city->slug,
-                            $content])}}" class="btn btn-primary">Explore</a>
+                            $budaya])}}" class="btn btn-primary">Explore</a>
                         </div>
                     </div>
                 </div>

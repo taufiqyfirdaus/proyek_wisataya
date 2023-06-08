@@ -17,14 +17,37 @@ class HomepageController extends Controller
         $penginapans = Penginapan::where('status_publish', 1)->latest()->limit(6)->get();
         return view('homepage.index', compact('contents', 'budayas', 'penginapans'));
     }
+
+    public function showPenginapan(Content $content){
+        $penginapans = Penginapan::where('status_publish', 1)->latest()->limit(6)->get();
+        return view('homepage.showPenginapan', compact('content', 'penginapans'));
+    }
     public function detailContent(Province $province, City $city, Content $content, Budaya $budaya, Penginapan $penginapan)
     {
         $contents = Content::where('status_publish', 1)->get()->random('5');
         $budayas = Budaya::where('status_publish', 1)->get()->random('5');
-        $penginapans = Penginapan::where('status_publish', 1)->get()->random('5');
+        $penginapans = Penginapan::where('status_publish', 1)->get()->random('1');
         $provinces = Province::get()->random('5');
        return view('homepage.detail', compact('province','city','content','contents','provinces', 'budayas', 'penginapans'));
+        // dd($province->name);
     }
+    public function detailPenginapan(Content $content, Penginapan $penginapan)
+    {
+        $contents = Content::where('status_publish', 1)->get()->random('5');
+       return view('homepage.detail', compact('province','city','content','contents','provinces', 'budayas', 'penginapans'));
+        // dd($province->name);
+    }
+
+    public function detailBudaya(Province $province, City $city, Content $content, Budaya $budaya, Penginapan $penginapan)
+    {
+        $contents = Content::where('status_publish', 1)->get()->random('5');
+        $budayas = Budaya::where('status_publish', 1)->get()->random('5');
+        $penginapans = Penginapan::where('status_publish', 1)->get()->random('1');
+        $provinces = Province::get()->random('5');
+       return view('homepage.detailBdy', compact('province','city','content','contents','provinces', 'budaya', 'budayas', 'penginapans'));
+        // dd($province->name);
+    }
+
     public function getContentProvince(Province $province)
     {
         $city = City::where('province_id', $province->id)->pluck('id');
@@ -32,10 +55,33 @@ class HomepageController extends Controller
         $budayas = Budaya::where('status_publish', 1)->whereIn('city_id', $city)->paginate(12);
         return view('homepage.getContentProvince', compact('contents','province', 'budayas'));
     }
+
+    public function getBudayaProvince(Province $province)
+    {
+        $city = City::where('province_id', $province->id)->pluck('id');
+        $contents = Content::where('status_publish', 1)->whereIn('city_id', $city)->paginate(12);
+        $budayas = Budaya::where('status_publish', 1)->whereIn('city_id', $city)->paginate(12);
+        return view('homepage.getBudayaProvince', compact('contents','province', 'budayas'));
+    }
+
+    public function getPenginapanProvince(Province $province)
+    {
+        $city = City::where('province_id', $province->id)->pluck('id');
+        $contents = Content::where('status_publish', 1)->whereIn('city_id', $city)->paginate(12);
+        $budayas = Budaya::where('status_publish', 1)->whereIn('city_id', $city)->paginate(12);
+        return view('homepage.getBudayaProvince', compact('contents','province', 'budayas'));
+    }
+
     public function getProvince()
     {
         $provinces = Province::all();
         return view('homepage.getProvince', compact('provinces'));
+    }
+
+    public function getProvinceBudaya()
+    {
+        $provinces = Province::all();
+        return view('homepage.getProvinceBudaya', compact('provinces'));
     }
     public function result(Request $request)
     {

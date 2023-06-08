@@ -13,7 +13,7 @@
             <a class="nav-link" href="{{route('getProvince')}}">Pariwisata Indonesia</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{route('getProvince')}}">Budaya</a>
+            <a class="nav-link" href="{{route('getProvinceBudaya')}}">Budaya</a>
           </li>
         </ul>
         <form action="{{ route('result')}}" method="get" class="form-inline my-2 my-lg-0">
